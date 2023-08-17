@@ -6,9 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,17 +15,16 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDb {
+public class TaskListDb {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private String userId;
+  private String taskListId;
   private String name;
-  private String username;
-  private String password;
   @CreationTimestamp
   private Date createdAt;
-  @UpdateTimestamp
-  private Date modifiedAt;
-  @OneToMany(mappedBy = "createdBy")
-  private List<TaskListDb> taskLists;
+  @ManyToOne
+  @JoinColumn(name = "fk_user_id")
+  private UserDb createdBy;
+  @OneToMany(mappedBy = "taskList")
+  private List<TaskDb> tasks;
 }
