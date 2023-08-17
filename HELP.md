@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.singhakxhay.task-management-system' is invalid and this project uses 'com.singhakxhay.taskmanagementsystem' instead.
+* The original package name 'com.singhakxhay.task-management-system' is invalid and this project uses 'com.singhakxhay.taskmanagement' instead.
 
 # Getting Started
 
