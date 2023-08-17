@@ -31,4 +31,7 @@ public class TaskDb {
   @ManyToOne
   @JoinColumn(name = "fk_user_id")
   private UserDb createdBy;
+  @OneToOne
+  @JoinColumn(name = "fk_task_list_id")
+  private TaskListDb taskList;
 }
