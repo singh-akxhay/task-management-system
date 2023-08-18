@@ -1,39 +1,48 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.1.2'
-	id 'io.spring.dependency-management' version '1.1.2'
+  id 'java'
+  id 'org.springframework.boot' version '3.1.2'
+  id 'io.spring.dependency-management' version '1.1.2'
 }
 
 group = 'com.singhakxhay'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+  sourceCompatibility = '17'
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
 }
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-graphql'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework:spring-webflux'
-	testImplementation 'org.springframework.graphql:spring-graphql-test'
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'org.springframework.boot:spring-boot-starter-graphql'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+  compileOnly 'org.projectlombok:lombok'
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  runtimeOnly 'com.mysql:mysql-connector-j'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'org.springframework:spring-webflux'
+  testImplementation 'org.springframework.graphql:spring-graphql-test'
+  annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+  useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+  options.compilerArgs += [
+      '-Amapstruct.suppressGeneratorTimestamp=true', // Suppress the timestamp in generated code
+      '-Amapstruct.unmappedTargetPolicy=ignore'      // Hide unmapped warnings
+  ]
 }
