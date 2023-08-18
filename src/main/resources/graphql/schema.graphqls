@@ -1,0 +1,69 @@
+type User{
+  userId: ID!
+  name: String!
+  username: String!
+  createdAt: String!
+  taskLists: [TaskList]!
+}
+
+type Task{
+  taskId: ID!
+  title: String!
+  description: String!
+  createdAt: String!
+  taskStatus: TaskStatus!
+  dueDate: String!
+  taskList: TaskList!
+}
+
+enum TaskStatus{
+  NEW
+  IN_PROGRESS
+  COMPLETED
+}
+
+type TaskList{
+  taskListId: ID!
+  name: String!
+  createdAt: String!
+  tasks: [Task]!
+}
+
+type Query{
+  # User
+  userById(userId: ID!): User!
+  userByUsername(username: String!): User!
+
+  # Task
+  tasksByUserId(userId: ID!): [Task]!
+
+  # TaskList
+  taskListsByUserId(userId: ID!): [TaskList]!
+}
+
+type Mutation{
+  # User
+  createUser(userInput: UserInput!): User!
+
+  # Task
+  createTask(userId: ID!, taskInput: TaskInput!, taskListId: ID!): Task!
+
+  # TaskList
+  createTaskList(userId: ID!, taskListInput: TaskListInput!): TaskList!
+}
+
+input UserInput{
+  name: String!
+  username: String!
+  password: String!
+}
+
+input TaskInput{
+  title: String!
+  description: String!
+  dueDate: String!
+}
+
+input TaskListInput{
+  name: String!
+}
