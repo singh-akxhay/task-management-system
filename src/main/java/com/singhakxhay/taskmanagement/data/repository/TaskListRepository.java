@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface TaskListRepository extends JpaRepository<TaskListDb, String> {
   List<TaskListDb> findByCreatedBy(UserDb createdBy);
+
+  Boolean existsByName(String name);
 }
