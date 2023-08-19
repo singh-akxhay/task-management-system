@@ -15,6 +15,7 @@ import java.sql.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "tasks")
 public class TaskDb {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
