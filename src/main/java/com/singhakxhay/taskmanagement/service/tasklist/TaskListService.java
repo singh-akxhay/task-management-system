@@ -9,4 +9,6 @@ public interface TaskListService {
   List<TaskListDb> getTaskListsByUserId(String userId);
 
   TaskListDb createTaskList(String userId, TaskListDb taskList);
+
+  TaskListDb getTaskListByTaskListId(String userId, String taskListId);
 }
