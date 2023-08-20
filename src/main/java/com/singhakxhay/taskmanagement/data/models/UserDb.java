@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 public class UserDb {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -29,4 +30,6 @@ public class UserDb {
   private Date modifiedAt;
   @OneToMany(mappedBy = "createdBy")
   private List<TaskListDb> taskLists;
+  @OneToMany(mappedBy = "createdBy")
+  private List<TaskDb> tasks;
 }

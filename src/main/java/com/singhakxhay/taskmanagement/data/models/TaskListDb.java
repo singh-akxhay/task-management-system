@@ -15,6 +15,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "task_lists")
 public class TaskListDb {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)

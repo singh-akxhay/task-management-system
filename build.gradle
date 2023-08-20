@@ -33,6 +33,7 @@ dependencies {
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.springframework:spring-webflux'
   testImplementation 'org.springframework.graphql:spring-graphql-test'
+  testImplementation 'com.h2database:h2:2.2.220'
   annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 }
 
