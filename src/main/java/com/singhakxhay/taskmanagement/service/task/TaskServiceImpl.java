@@ -19,7 +19,7 @@ public class TaskServiceImpl implements TaskService {
   @Override
   public List<TaskDb> getTasksByUserId(String userId) {
     var user = userService.getUserById(userId);
-    return taskRepository.findByCreatedBy(user);
+    return user.getTasks();
   }
 
   @Override

@@ -19,7 +19,7 @@ public class TaskListServiceImpl implements TaskListService {
   @Override
   public List<TaskListDb> getTaskListsByUserId(String userId) {
     var user = userService.getUserById(userId);
-    return taskListRepository.findByCreatedBy(user);
+    return user.getTaskLists();
   }
 
   @Override

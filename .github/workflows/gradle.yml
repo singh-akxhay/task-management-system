@@ -6,12 +6,8 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,13 +17,5 @@ jobs:
         with:
           java-version: '17'
           distribution: 'zulu'
-      - name: Change gradlew permission
-        run: chmod +x gradlew
-      - name: Generate gradle wrapper
-        run: ./gradlew wrapper
-      - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2.7.0
-        with:
-          arguments: build
+        run: ./gradlew build
