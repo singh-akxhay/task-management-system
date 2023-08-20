@@ -30,4 +30,6 @@ public class UserDb {
   private Date modifiedAt;
   @OneToMany(mappedBy = "createdBy")
   private List<TaskListDb> taskLists;
+  @OneToMany(mappedBy = "createdBy")
+  private List<TaskDb> tasks;
 }
