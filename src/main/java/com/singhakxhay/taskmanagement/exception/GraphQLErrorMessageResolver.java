@@ -7,10 +7,12 @@ import com.singhakxhay.taskmanagement.exception.user.UsernameAlreadyExistsExcept
 import graphql.GraphQLError;
 import graphql.GraphqlErrorBuilder;
 import graphql.schema.DataFetchingEnvironment;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class GraphQLErrorMessageResolver extends DataFetcherExceptionResolverAdapter {
   @Override
   protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
@@ -23,6 +25,8 @@ public class GraphQLErrorMessageResolver extends DataFetcherExceptionResolverAda
         || ex instanceof TaskListAlreadyExistsException) {
       errorType = CustomErrorType.CONFLICT;
     }
+
+    log.error("[resolveToSingleError] - Exception occurred. ErrorType = {}", errorType);
 
     return GraphqlErrorBuilder.newError(env)
         .errorType(errorType)

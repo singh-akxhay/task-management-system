@@ -13,7 +13,6 @@ type Task{
   createdAt: String!
   taskStatus: TaskStatus!
   dueDate: String!
-  taskList: TaskList!
 }
 
 enum TaskStatus{
