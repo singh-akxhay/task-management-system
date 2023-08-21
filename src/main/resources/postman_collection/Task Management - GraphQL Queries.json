@@ -1,0 +1,149 @@
+{
+ "info": {
+  "_postman_id": "af241415-6c11-4541-a017-83a699fa99cd",
+  "name": "Task Management - GraphQL Queries",
+  "description": "This is a comprehensive Task Management System API built using GraphQL and Spring Boot. The API allows users to manage their tasks, create task lists, set due dates, and track their progress. It demonstrates my proficiency in GraphQL schema design, Spring Boot development, database interaction, and user authentication.",
+  "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+  "_exporter_id": "25642375"
+ },
+ "item": [
+  {
+   "name": "Create Task",
+   "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation createTask($userId: ID!, $taskInput: TaskInput!, $taskListId: ID!) {\r\n  createTask(userId: $userId, taskInput: $taskInput, taskListId: $taskListId) {\r\n    taskId\r\n  }\r\n}",
+      "variables": "{\r\n  \"userId\": \"9c66ce15-9a82-4ad7-b7cb-fd291ef0869a\",\r\n  \"taskInput\": {\r\n    \"title\": \"Complete graphQL project\",\r\n    \"description\": \"A mini project on Spring boot and GraphQL\",\r\n    \"dueDate\": \"2023-08-20\"\r\n  },\r\n  \"taskListId\": \"17384184-76ce-48ce-a0f9-a1fe703b2519\"\r\n}"
+     }
+    },
+    "url": "{{baseUrl}}/graphql"
+   },
+   "response": []
+  },
+  {
+   "name": "Create User",
+   "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation createUser($userInput: UserInput!) {\r\n  createUser(userInput: $userInput) {\r\n      userId\r\n      name\r\n  }\r\n}",
+      "variables": "{\r\n    \"userInput\":{\r\n        \"name\":\"Abhi\",\r\n        \"username\":\"abhi\",\r\n        \"password\":\"abhi-1234\"\r\n    }\r\n}"
+     }
+    },
+    "url": "{{baseUrl}}/graphql"
+   },
+   "response": []
+  },
+  {
+   "name": "Get User By User Id",
+   "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "query getUserById($userId: ID!) {\r\n  userById(userId: $userId){\r\n      userId\r\n      name\r\n  }\r\n}",
+      "variables": "{\r\n  \"userId\": \"9c66ce15-9a82-4ad7-b7cb-fd291ef0869a\"\r\n}"
+     }
+    },
+    "url": "{{baseUrl}}/graphql"
+   },
+   "response": []
+  },
+  {
+   "name": "Get User By Username",
+   "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "query getUserById($username: String!) {\r\n  userByUsername(username: $username){\r\n      userId\r\n      name\r\n  }\r\n}",
+      "variables": "{\r\n    \"username\":\"akshay21\"\r\n}"
+     }
+    },
+    "url": "{{baseUrl}}/graphql"
+   },
+   "response": []
+  },
+  {
+   "name": "Get Tasks By User Id",
+   "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "query getTasks($userId: ID!){\r\n    tasksByUserId(userId: $userId){\r\n        taskId\r\n        title\r\n        description\r\n        taskStatus\r\n        createdAt\r\n        dueDate\r\n    }\r\n}",
+      "variables": "{\r\n  \"userId\": \"9c66ce15-9a82-4ad7-b7cb-fd291ef0869a\"\r\n}"
+     }
+    },
+    "url": "{{baseUrl}}/graphql"
+   },
+   "response": []
+  },
+  {
+   "name": "Get Task Lists By User Id",
+   "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "query getTaskLists($userId: ID!){\r\n    taskListsByUserId(userId: $userId){\r\n        taskListId\r\n        name\r\n        createdAt\r\n        tasks{\r\n            taskId\r\n            taskStatus\r\n        }\r\n    }\r\n}",
+      "variables": "{\r\n  \"userId\": \"9c66ce15-9a82-4ad7-b7cb-fd291ef0869a\"\r\n}"
+     }
+    },
+    "url": "{{baseUrl}}/graphql"
+   },
+   "response": []
+  },
+  {
+   "name": "Create Task List",
+   "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+     "mode": "graphql",
+     "graphql": {
+      "query": "mutation createTaskList($userId: ID!, $taskListInput: TaskListInput!){\r\n    createTaskList(userId: $userId, taskListInput: $taskListInput){\r\n        taskListId\r\n        name\r\n    }\r\n}",
+      "variables": "{\r\n    \"userId\":\"9c66ce15-9a82-4ad7-b7cb-fd291ef0869a\",\r\n    \"taskListInput\": {\r\n        \"name\":\"Work\"\r\n    }\r\n}"
+     }
+    },
+    "url": "{{baseUrl}}/graphql"
+   },
+   "response": []
+  }
+ ],
+ "event": [
+  {
+   "listen": "prerequest",
+   "script": {
+    "type": "text/javascript",
+    "exec": [
+     ""
+    ]
+   }
+  },
+  {
+   "listen": "test",
+   "script": {
+    "type": "text/javascript",
+    "exec": [
+     ""
+    ]
+   }
+  }
+ ],
+ "variable": [
+  {
+   "key": "baseUrl",
+   "value": "http://localhost:8080"
+  }
+ ]
+}
