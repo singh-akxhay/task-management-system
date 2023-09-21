@@ -22,7 +22,8 @@ public class UserQueryResolver {
     log.info("[userById] - Started fetching user by userId = {}", userId);
 
     var userDb = userService.getUserById(userId);
-    var user = UserMapper.getInstance().mapToUser(userDb);
+    var user = UserMapper.getInstance()
+        .mapToUser(userDb);
 
     log.info("[userById] - Ended fetching user by userId = {}", userId);
 
